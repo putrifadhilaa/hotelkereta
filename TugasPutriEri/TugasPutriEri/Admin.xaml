@@ -1,0 +1,175 @@
+﻿<Window x:Class="TugasPutriEri.Admin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TugasPutriEri"
+        mc:Ignorable="d"
+        Title="Hotel" Height="506" Width="430.564">
+    <Grid Height="369" VerticalAlignment="Top">
+        <TabControl x:Name="tabControl" TabStripPlacement="Left" HorizontalAlignment="Left" Height="473" VerticalAlignment="Bottom" Width="421" Margin="0,0,0,-104" RenderTransformOrigin="0.5,0.5">
+            <TabControl.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleX="0.531"/>
+                    <RotateTransform/>
+                    <TranslateTransform X="1.491"/>
+                </TransformGroup>
+            </TabControl.RenderTransform>
+            <TabItem Header="Hotel">
+                <Grid Background="#FFE5E5E5" Margin="3,0,-3,0">
+                    <Label x:Name="label4" Content="Nama Hotel" HorizontalAlignment="Left" Margin="7,19,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="NamaHotel" HorizontalAlignment="Left" Height="23" Margin="123,22,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                    <Label x:Name="label5" Content="Star" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.187,-0.363"/>
+                    <Button x:Name="AddHotel" Content="Add" HorizontalAlignment="Left" Margin="46,287,0,0" VerticalAlignment="Top" Width="75" Click="AddHotel_Click"/>
+                    <Label x:Name="label6" Content="Provinsi" HorizontalAlignment="Left" Margin="10,157,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="label7" Content="Kota" HorizontalAlignment="Left" Margin="10,184,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="label8" Content="Kecamatan" HorizontalAlignment="Left" Margin="10,207,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="label9" Content="Kelurahan" HorizontalAlignment="Left" Margin="10,236,0,0" VerticalAlignment="Top"/>
+                    <ComboBox x:Name="ProvinsiHotel" ItemsSource="{Binding getprovinsihotel}" SelectedValuePath="Id" DisplayMemberPath="Name" HorizontalAlignment="Left" Margin="123,157,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="ProvinsiHotel_SelectionChanged"/>
+                    <ComboBox x:Name="KotaHotel" ItemsSource="{Binding getkotahotel}" SelectedValuePath="Id" DisplayMemberPath="Name" HorizontalAlignment="Left" Margin="123,184,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="KotaHotel_SelectionChanged"/>
+                    <ComboBox x:Name="KecamatanHotel" ItemsSource="{Binding getkecamatanhotel}" SelectedValuePath="Id" DisplayMemberPath="Name" HorizontalAlignment="Left" Margin="123,211,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="KecamatanHotel_SelectionChanged"/>
+                    <ComboBox x:Name="KelurahanHotel" ItemsSource="{Binding getkelurahanhotel}" SelectedValuePath="Id" DisplayMemberPath="Name" HorizontalAlignment="Left" Margin="123,238,0,0" VerticalAlignment="Top" Width="120"/>
+                    <RadioButton x:Name="BintangSatu" Content="*" HorizontalAlignment="Left" Margin="123,56,0,0" VerticalAlignment="Top"/>
+                    <RadioButton x:Name="BintangDua" Content="**" HorizontalAlignment="Left" Margin="123,76,0,0" VerticalAlignment="Top"/>
+                    <RadioButton x:Name="BintangTiga" Content="***" HorizontalAlignment="Left" Margin="123,96,0,0" VerticalAlignment="Top"/>
+                    <RadioButton x:Name="BintangEmpat" Content="****" HorizontalAlignment="Left" Margin="123,116,0,0" VerticalAlignment="Top"/>
+                    <RadioButton x:Name="BintangLima" Content="*****" HorizontalAlignment="Left" Margin="123,136,0,0" VerticalAlignment="Top"/>
+                    <Button x:Name="updatekamar" Content="Update" HorizontalAlignment="Left" Margin="144,287,0,0" VerticalAlignment="Top" Width="75"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Room">
+                <Grid Background="#FFE5E5E5">
+                    <Label x:Name="label18" Content="Room" HorizontalAlignment="Left" Margin="63,214,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.2,0.577"/>
+                    <TextBox x:Name="NamaKamar" HorizontalAlignment="Left" Height="23" Margin="122,217,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                    <Button x:Name="AddKamar" Content="Add" HorizontalAlignment="Left" Margin="167,261,0,0" VerticalAlignment="Top" Width="75" Click="AddKamar_Click"/>
+                    <DataGrid x:Name="DataKamar" AutoGenerateColumns="False" ItemsSource="{Binding GetDataKamar}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="169" Width="306" SelectionChanged="DataKamar_SelectionChanged">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Hotel" Binding="{Binding Hotels.Name}"/>
+                            <DataGridTextColumn Header="Tipe Kamar" Binding="{Binding Name}"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Label x:Name="label22" Content="Hotel" HorizontalAlignment="Left" Margin="63,188,0,0" VerticalAlignment="Top"/>
+                    <ComboBox x:Name="hotelroom" ItemsSource="{Binding gethotelroom}" SelectedValuePath="Id" DisplayMemberPath="Name" HorizontalAlignment="Left" Margin="122,190,0,0" VerticalAlignment="Top" Width="120"/>
+                    <Button x:Name="updateroom" Content="Update" HorizontalAlignment="Left" Margin="167,286,0,0" VerticalAlignment="Top" Width="75" Click="updateroom_Click"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Facility" Height="24" VerticalAlignment="Bottom">
+                <Grid Background="#FFE5E5E5">
+                    <DataGrid x:Name="datafasilitas" AutoGenerateColumns="False" ItemsSource="{Binding GetDataFasilitas}"  HorizontalAlignment="Left" Margin="22,10,0,0" VerticalAlignment="Top" Height="159" Width="306" SelectionChanged="datafasilitas_SelectionChanged"/>
+                    <Label x:Name="label25" Content="Fasilitas" HorizontalAlignment="Left" Margin="22,218,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="namafasilitas" HorizontalAlignment="Left" Height="23" Margin="22,244,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                    <Button x:Name="AddFasilitas" Content="Add" HorizontalAlignment="Left" Margin="156,280,0,0" VerticalAlignment="Top" Width="75" Click="AddFasilitas_Click"/>
+
+                </Grid>
+
+            </TabItem>
+            <TabItem Header="Detail Room">
+                <Grid Background="#FFE5E5E5" Margin="-1,0,1,0">
+                    <Label x:Name="label" Content="Room" HorizontalAlignment="Left" Margin="31,212,0,0" VerticalAlignment="Top"/>
+                    <DataGrid x:Name="datadetailroom" AutoGenerateColumns="False" ItemsSource="{Binding GetDataDetailRoom}" HorizontalAlignment="Left" Margin="31,26,0,0" VerticalAlignment="Top" Height="143" Width="277" SelectionChanged="datadetailroom_SelectionChanged">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Hotel" Binding="{Binding datahoteldetail}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Room" Binding="{Binding dataroomdetail}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Facility" Binding="{Binding datafasilitasdetail}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Price" Binding="{Binding datahargadetail}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Label x:Name="label1" Content="Fasilitas" HorizontalAlignment="Left" Margin="31,238,0,0" VerticalAlignment="Top"/>
+                    <ComboBox x:Name="roomfacility" ItemsSource="{Binding getroomfacility}" SelectedValuePath="Id" DisplayMemberPath="Name" HorizontalAlignment="Left" Margin="99,216,0,0" VerticalAlignment="Top" Width="191"/>
+                    <CheckBox x:Name="single" Content="1-Single Bed" HorizontalAlignment="Left" Margin="99,247,0,0" VerticalAlignment="Top" Checked="single_Checked" Unchecked="single_Unchecked"></CheckBox>
+                    <CheckBox x:Name="singlesingle" Content="2-Single Beds"  HorizontalAlignment="Left" Margin="99,264,0,0" VerticalAlignment="Top" Checked="singlesingle_Checked" Unchecked="singlesingle_Unchecked"/>
+                    <CheckBox x:Name="dobel" Content="1-Double Bed"  HorizontalAlignment="Left" Margin="99,284,0,0" VerticalAlignment="Top" Checked="dobel_Checked" Unchecked="dobel_Unchecked"></CheckBox>
+                    <CheckBox x:Name="dobell" Content="2-Double Beds"  HorizontalAlignment="Left" Margin="99,304,0,0" VerticalAlignment="Top" Checked="dobell_Checked" Unchecked="dobell_Unchecked" />
+                    <CheckBox x:Name="tv" Content="Television"  HorizontalAlignment="Left" Margin="99,322,0,0" VerticalAlignment="Top" Checked="tv_Checked" Unchecked="tv_Unchecked"/>
+                    <CheckBox x:Name="ac" Content="AC"  HorizontalAlignment="Left" Margin="99,342,0,0" VerticalAlignment="Top" Checked="ac_Checked" Unchecked="ac_Unchecked"/>
+                    <CheckBox x:Name="bottle" Content="Bottle Water"  HorizontalAlignment="Left" Margin="99,362,0,0" VerticalAlignment="Top" Checked="bottle_Checked" Unchecked="bottle_Unchecked"/>
+                    <CheckBox x:Name="maker" Content="Coffee/Tea Maker"  HorizontalAlignment="Left" Margin="99,381,0,0" VerticalAlignment="Top" Checked="maker_Checked" Unchecked="maker_Unchecked"/>
+                    <CheckBox x:Name="hair" Content="HairDryer"  HorizontalAlignment="Left" Margin="219,244,0,0" VerticalAlignment="Top" Checked="hair_Checked" Unchecked="hair_Unchecked"/>
+                    <CheckBox x:Name="iron" Content="Ironing Facility"  HorizontalAlignment="Left" Margin="219,264,0,0" VerticalAlignment="Top" Checked="iron_Checked" Unchecked="iron_Unchecked"/>
+                    <CheckBox x:Name="slipper" Content="Slippers"  HorizontalAlignment="Left" Margin="219,284,0,0" VerticalAlignment="Top" Checked="slipper_Checked" Unchecked="slipper_Unchecked"/>
+                    <CheckBox x:Name="toilet" Content="Toiletries"  HorizontalAlignment="Left" Margin="219,304,0,0" VerticalAlignment="Top" Checked="toilet_Checked" Unchecked="toilet_Unchecked"/>
+                    <CheckBox x:Name="hot" Content="Hot Water"  HorizontalAlignment="Left" Margin="219,324,0,0" VerticalAlignment="Top" Checked="hot_Checked" Unchecked="hot_Unchecked"/>
+                    <Label x:Name="label16" Content="Price" HorizontalAlignment="Left" Margin="31,405,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="harga" HorizontalAlignment="Left" Height="23" Margin="92,408,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                    <Button x:Name="add_detail" Content="Add" HorizontalAlignment="Left" Margin="233,437,0,0" VerticalAlignment="Top" Width="75" Click="add_detail_Click"/>
+                    <Label x:Name="label17" Content="Hotel" HorizontalAlignment="Left" Margin="33,186,0,0" VerticalAlignment="Top"/>
+                    <ComboBox x:Name="hoteldetailroom" ItemsSource="{Binding gethoteldetail}" SelectedValuePath="Id" DisplayMemberPath="Name" HorizontalAlignment="Left" Margin="99,189,0,0" VerticalAlignment="Top" Width="191" SelectionChanged="hoteldetailroom_SelectionChanged"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Provinsi">
+                <Grid Background="#FFE5E5E5">
+                    <Button x:Name="AddProvinsi" Content="Add" HorizontalAlignment="Left" Margin="10,229,0,0" VerticalAlignment="Top" Width="75" Click="AddProvinsi_Click"/>
+                    <Button x:Name="DeleteProvinsi" Content="Delete" HorizontalAlignment="Left" Margin="178,229,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.324,-0.459"/>
+                    <Label x:Name="label100" Content="Provinsi" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,185,0,0"/>
+                    <TextBox x:Name="TextProvinsi" HorizontalAlignment="Left" Height="23" Margin="122,185,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                    <DataGrid x:Name="DataProvinsi" AutoGenerateColumns="False" ItemsSource="{Binding GetDataProvinsi}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="142" Width="284" SelectionChanged="DataProvinsi_SelectionChanged">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Provinsi" Binding="{Binding Name}"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button x:Name="UpdateProvinsi" Content="Update" HorizontalAlignment="Left" Margin="98,229,0,0" VerticalAlignment="Top" Width="75"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Kota">
+                <Grid Background="#FFE5E5E5">
+                    <DataGrid x:Name="DataKota" AutoGenerateColumns="False" ItemsSource="{Binding GetDataKota}" SelectedValuePath="Id" DisplayMemberPath="Name" HorizontalAlignment="Left" VerticalAlignment="Top" Height="135" Width="284" Margin="10,10,0,0" SelectionChanged="DataKota_SelectionChanged">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Kota" Binding="{Binding Name}"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Label x:Name="label200" Content="Kota" HorizontalAlignment="Left" Margin="10,185,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="TextKota" HorizontalAlignment="Left" Height="23" Margin="96,188,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                    <Button x:Name="AddKota" Content="Add" HorizontalAlignment="Left" Margin="20,231,0,0" VerticalAlignment="Top" Width="75" Click="AddKota_Click"/>
+                    <Button x:Name="DeleteKota" Content="Delete" HorizontalAlignment="Left" Margin="219,232,0,0" VerticalAlignment="Top" Width="75"/>
+                    <Button x:Name="UpdateKota" Content="Button" HorizontalAlignment="Left" Margin="122,231,0,0" VerticalAlignment="Top" Width="75"/>
+                    <Label x:Name="label2" Content="Provinsi" HorizontalAlignment="Left" Margin="10,159,0,0" VerticalAlignment="Top"/>
+                    <ComboBox x:Name="provinsi_kota" ItemsSource="{Binding getProvinsi}" SelectedValuePath="Id" DisplayMemberPath="Name" HorizontalAlignment="Left" Margin="96,161,0,0" VerticalAlignment="Top" Width="120"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Kecamatan">
+                <Grid Background="#FFE5E5E5">
+                    <DataGrid x:Name="DataKecamatan" AutoGenerateColumns="False" ItemsSource="{Binding GetDataKecamatan}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="126" Width="284">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Kecamatan" Binding="{Binding Name}"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Label x:Name="label3" Content="Kecamatan" HorizontalAlignment="Left" Margin="10,201,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="TextKecamatan" HorizontalAlignment="Left" Height="23" Margin="101,201,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                    <Button x:Name="AddKecamatan" Content="Add" HorizontalAlignment="Left" Margin="219,232,0,0" VerticalAlignment="Top" Width="75" Click="AddKecamatan_Click"/>
+                    <Label x:Name="label10" Content="Provinsi" HorizontalAlignment="Left" Margin="10,141,0,0" VerticalAlignment="Top"/>
+                    <ComboBox x:Name="provinsi_kecamatan" ItemsSource="{Binding getProvinsiKecamatan}" SelectedValuePath="Id" DisplayMemberPath="Name" HorizontalAlignment="Left" Margin="101,145,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="provinsi_kecamatan_SelectionChanged"/>
+                    <Label x:Name="label11" Content="Kota" HorizontalAlignment="Left" Margin="10,174,0,0" VerticalAlignment="Top"/>
+                    <ComboBox x:Name="kota_kecamatan" ItemsSource="{Binding getKotaKecamatan}" SelectedValuePath="Id" DisplayMemberPath="Name" HorizontalAlignment="Left" Margin="101,174,0,0" VerticalAlignment="Top" Width="120"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Kelurahan">
+                <Grid Background="#FFE5E5E5">
+                    <DataGrid x:Name="DataKelurahan" AutoGenerateColumns="False" ItemsSource="{Binding GetDataKelurahan}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="124" Width="284">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Kelurahan" Binding="{Binding Name}"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Label x:Name="label12" Content="Provinsi" HorizontalAlignment="Left" Margin="10,139,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="label13" Content="Kota" HorizontalAlignment="Left" Margin="10,165,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="label14" Content="Kecamatan" HorizontalAlignment="Left" Margin="10,191,0,0" VerticalAlignment="Top"/>
+                    <ComboBox x:Name="provinsi_kelurahan" ItemsSource="{Binding getProvinsiKelurahan}" SelectedValuePath="Id" DisplayMemberPath="Name" HorizontalAlignment="Left" Margin="82,139,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="provinsi_kelurahan_SelectionChanged"/>
+                    <ComboBox x:Name="kota_kelurahan" SelectedValuePath="Id" DisplayMemberPath="Name" ItemsSource="{Binding getKotaKelurahan}" HorizontalAlignment="Left" Margin="82,166,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="kota_kelurahan_SelectionChanged"/>
+                    <ComboBox x:Name="kecamatan_kelurahan" SelectedValuePath="Id" DisplayMemberPath="Name" ItemsSource="{Binding getKecamatanKelurahan}" HorizontalAlignment="Left" Margin="83,195,0,0" VerticalAlignment="Top" Width="120"/>
+                    <Label x:Name="label15" Content="Kelurahan" HorizontalAlignment="Left" Margin="10,222,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="TextKelurahan" HorizontalAlignment="Left" Height="23" Margin="83,222,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.5,0.5">
+                        <TextBox.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-0.612"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </TextBox.RenderTransform>
+                    </TextBox>
+                    <Button x:Name="AddKelurahan" Content="Add" HorizontalAlignment="Left" Margin="219,225,0,0" VerticalAlignment="Top" Width="75" Click="AddKelurahan_Click"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
